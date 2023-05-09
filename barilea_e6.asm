@@ -22,7 +22,7 @@ section .data
 
       choice db 0
       convertedInput dd 0
-      minutes dd 60
+      minutes db 60
       Hours equ 60
       ten db 10
       temp dd 0;

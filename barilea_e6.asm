@@ -84,8 +84,21 @@ convert:
       mov dword[temp], eax
       add ecx, dword[temp]
 
-      
-      
+      mov al, byte[seconds+1]
+      mul ebx
+      mov dword[temp], eax
+      add ecx, dword[temp]
+
+      mov al, byte[seconds+2]
+      mul ebx
+      mov dword[temp], eax
+      add ecx, dword[temp]
+
+      mov al, byte[seconds+3]
+      mul ebx
+      mov dword[temp], eax
+      add ecx, dword[temp]
+
 
       jmp exit_here
 

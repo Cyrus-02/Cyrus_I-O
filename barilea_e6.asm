@@ -71,40 +71,20 @@ convert_to_minutes:
       mov rbx, 0
 
 convert:
-      mov al, byte[seconds+rbx]
-      sub al, 30h
-      inc bl
+      sub byte[seconds+rbx], 30h
+      inc rbx
       loop convert
 
       mov ebx, 10000
-      mov eax, dword[convertedInput]
-      mov cl, byte[seconds]
-      mul ebx
-      mov dword[temp], ecx
-      add eax, dword[temp]
-
-      mov ebx, 1000
-      mov cl, byte[seconds+1]
-      mul ebx
-      mov dword[temp], ecx
-      add eax, dword[temp]
+      mov dword[convertedInput], 0
       
-      mov ebx, 100
-      mov cl, byte[seconds+2]
+      mov ecx, dword[convertedInput]
+      mov al, byte[seconds]
       mul ebx
-      mov dword[temp], ecx
-      add eax, dword[temp]
-      
-      mov ebx, 10
-      mov cl, byte[seconds+3]
-      mul ebx
-      mov dword[temp], ecx
-      add eax, dword[temp]
+      mov dword[temp], eax
+      add ecx, dword[temp]
 
-      div dword[minutes]
-      mov edx, 0
-      mov dword[convertedInput], eax
-      div byte[ten]
+      
       
 
       jmp exit_here

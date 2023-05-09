@@ -102,7 +102,17 @@ convert:
       mov dword[temp], eax
       add ecx, dword[temp]
 
+      mov rax, 0
+      mov eax, ecx
+      mov byte[minutes], 60
       div byte[minutes]
+
+      mov dword[convertedInput], eax
+      mov eax, dword[convertedInput]
+      mov bl, 10
+      div bl
+
+
 
       jmp exit_here
 

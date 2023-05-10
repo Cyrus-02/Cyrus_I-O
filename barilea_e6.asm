@@ -121,12 +121,10 @@ divide:
       div ebx
       mov dword[temp], eax
 
-back:
       mov bl, 10
       mov rax, 0
       mov eax, dword[temp]
       div ebx
-      
 
       jmp exit_here
 

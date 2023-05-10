@@ -26,6 +26,7 @@ section .data
       Hours equ 60
       ten db 10
       temp dd 0;
+      remain db 0;
 
 section .bss
       seconds resb 5
@@ -84,35 +85,48 @@ convert:
       mov dword[temp], eax
       add ecx, dword[temp]
 
-      mov al, 0
+      mov ebx, 1000
+      mov rax, 0
       mov al, byte[seconds+1]
       mul ebx
       mov dword[temp], eax
       add ecx, dword[temp]
 
-      mov al, 0
+      mov ebx, 100
+      mov rax, 0
       mov al, byte[seconds+2]
       mul ebx
       mov dword[temp], eax
       add ecx, dword[temp]
 
-      mov al, 0
+      mov ebx, 10
+      mov rax, 0
       mov al, byte[seconds+3]
       mul ebx
       mov dword[temp], eax
       add ecx, dword[temp]
 
+      mov ebx, 1
+      mov rax, 0
+      mov al, byte[seconds+4]
+      mul ebx
+      mov dword[temp], eax
+      add ecx, dword[temp]
+
+divide:
+      mov ebx, 0
+      mov bl, byte[minutes] 
       mov rax, 0
       mov eax, ecx
-      mov byte[minutes], 60
-      div byte[minutes]
+      div ebx
+      mov dword[temp], eax
 
-      mov dword[convertedInput], eax
-      mov eax, dword[convertedInput]
+back:
       mov bl, 10
-      div bl
-
-
+      mov rax, 0
+      mov eax, dword[temp]
+      div ebx
+      
 
       jmp exit_here
 
